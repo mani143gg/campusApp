@@ -7,15 +7,20 @@ import {
 } from 'react-native';
 import MenuButton from '../../components/MenuButton';
 import {Ionicons } from '@expo/vector-icons';
-
+import editProfile from './editProfile';
+import ProfileNavigator from '../../navigation/Admin/ProfileNavigator';
 
 
 export default class Profile extends Component {
+  static navigationOptions = {
+    title:'welcome'
+  };
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-      <MenuButton navigation={this.props.navigation} />
+      {/* <MenuButton navigation={this.props.navigation} /> */}
       
           <View style={styles.header}>
             <View style={styles.headerContent}>
@@ -31,7 +36,7 @@ export default class Profile extends Component {
                           color="black"
                           size={32}
                           style={styles.menuIcon}
-                          onPress= {()=> this.props.navigation.toggleDrawer()}
+                          onPress= {()=> navigate('ProfileNavigator')}
                   />
             </View>
           </View>
