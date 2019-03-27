@@ -7,8 +7,10 @@ import editProfile from '../../screens/Admin/editProfile';
 
 
 const App = createStackNavigator({
+  
+  Profile : { screen : Profile},
   editProfile: { screen: editProfile },
-  Profile: { screen: Profile },
+  
 });
 
 export default createAppContainer(App);

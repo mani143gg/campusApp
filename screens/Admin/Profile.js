@@ -8,10 +8,15 @@ import {
 import MenuButton from '../../components/MenuButton';
 import {Ionicons } from '@expo/vector-icons';
 import editProfile from './editProfile';
-import ProfileNavigator from '../../navigation/Admin/ProfileNavigator';
+import firebase from '../../config';
+
+
 
 
 export default class Profile extends Component {
+
+
+ 
   static navigationOptions = {
     title:'welcome'
   };
@@ -36,7 +41,7 @@ export default class Profile extends Component {
                           color="black"
                           size={32}
                           style={styles.menuIcon}
-                          onPress= {()=> navigate('ProfileNavigator')}
+                          onPress= {()=> navigate('editProfile')}
                   />
             </View>
           </View>

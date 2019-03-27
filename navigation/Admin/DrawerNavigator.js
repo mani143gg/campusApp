@@ -8,6 +8,7 @@ import Add from '../../screens/Admin/Add';
 import MenuDrawer from '../../components/MenuDrawer';
 import Assignment from '../../screens/Admin/Assignment';
 import Profile from '../../screens/Admin/Profile';
+import ProfileNavigator from '../../navigation/Admin/ProfileNavigator'
 
 
 const WIDTH = Dimensions.get('window').width;
@@ -26,7 +27,7 @@ const DrawerNavigator = createDrawerNavigator(
      Add : { screen : Add},
      Assignment : { screen : Assignment},
      Notice : { screen : Notice},
-     Profile : {screen : Profile},
+     Profile : {screen : ProfileNavigator},
     },
     DrawerConfig
 );

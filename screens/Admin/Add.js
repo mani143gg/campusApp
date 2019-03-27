@@ -4,13 +4,7 @@ import {createAppContainer,createBottomTabNavigator} from 'react-navigation';
 import MenuButton from '../../components/MenuButton';
 import firebase from '../../config';
 import Form from 'react-native-form';
-import {
-
-    Item,
-    Label,
-    Input,
-    Button,
-  } from 'native-base';
+import { Item,Label,Input,Button,} from 'native-base';
 
 class Students extends Component {
     constructor(props) {
