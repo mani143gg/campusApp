@@ -6,17 +6,18 @@ import Loading from './Loading';
 import SignUp from './signUp'
 import login from './login'
 import Main from './main'
-
+import DrawerNavigator from '../../navigation/Admin/DrawerNavigator'
 
 const App = createSwitchNavigator(
   {
     Loading:{screen:Loading},
     SignUp: {screen: SignUp},
     login: {screen: login},
-    Main: {screen : Main}
+    Main: {screen : Main},
+    DrawerNavigator : {screen: DrawerNavigator}
   },
   {
-    initialRouteName: 'Loading'
+    initialRouteName: 'SignUp'
   }
 );
 const AppContainer = createAppContainer(App);   

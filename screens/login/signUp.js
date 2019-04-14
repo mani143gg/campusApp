@@ -1,10 +1,29 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import firebase from 'firebase';
+import { Google } from 'expo';
 
 
 export default class SignUp extends React.Component {
-    
+
+        signInWithGoogleAsync = async () => {
+            try {
+                const result = await Expo.Google.logInAsync({
+                    behavior: 'web',
+                    androidClientId: '526718627470-7ej63fal4ven1e3fc4j2lndl2ucu76bj.apps.googleusercontent.com',
+                    scopes: ['profile', 'email']
+                });
+                if (result.type == 'sucess'){
+                    return result.accessToken;
+                }else{
+                    return {cancelled : true};
+                }
+            } catch (e) {
+                return { error: true};
+                
+            }
+        }; 
+        
 
         state = { email: '', password: '', errorMessage: null }
         handleSignUp = () => {
@@ -44,6 +63,9 @@ export default class SignUp extends React.Component {
                     title="Already have an account? Login"
                     onPress={() => this.props.navigation.navigate('login')}
                 />
+                <Button
+                title="sign in with google" 
+                onPress= {() => this.signInWithGoogleAsync()} />
             </View>
         )
     }
@@ -61,5 +83,4 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginTop: 8
     }
-})
-
+});

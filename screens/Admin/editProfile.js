@@ -18,7 +18,14 @@ export default class editProfile  extends React.Component {
       this.setState({ currentUser })
   }
 
-
+ 
+    state = {userdata : null} 
+    componentDidMount (){ 
+    const {userdata} = firebase.database().ref('Student/').once('value',  (snapshot) =>  {
+        this.setState({ userdata })
+    });
+    }
+     
 
         constructor(props) {
         super(props);
@@ -35,7 +42,7 @@ export default class editProfile  extends React.Component {
   render() {
     const {currentUser}= this.state
     return (
-      <View style={styles.container}>
+       <View style={styles.container}>
       <ScrollView >
         <Text style={styles.title}>
          Edit Profile

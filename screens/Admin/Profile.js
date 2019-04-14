@@ -13,10 +13,9 @@ import firebase from '../../config';
 
 
 
+
 export default class Profile extends Component {
 
-
- 
   static navigationOptions = {
     title:'welcome'
   };
@@ -25,7 +24,7 @@ export default class Profile extends Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-      {/* <MenuButton navigation={this.props.navigation} /> */}
+      <MenuButton navigation={this.props.navigation} />
       
           <View style={styles.header}>
             <View style={styles.headerContent}>

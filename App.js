@@ -11,35 +11,10 @@ import config from './config';
 import {Permissions , Notifications } from 'expo';
 import Profile from './screens/Admin/Profile';
 import { Item,Label,Input,Button} from 'native-base';
-
-
+import RNOneSignal from './index'
 export default class App extends React.Component {
 
-  // constructor(props){
-  //   super(props)
-  // }
 
-  // componentDidMount(){
-  //   this.registerForPushNotifications();
-  // }
-  //   registerForPushNotifications = async () => {
-  //     //check for existing permission
-  //     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-  //     let finalStatus = status;
-
-  //     // ask user for permission
-  //     if (status !== 'granted') {
-  //       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-  //       finalStatus = status;
-  //     }
-  //     if(finalStatus !== 'granted'){ return; }
-
-  //     //get notification token
-
-  //     let token = await Notifications.getExpoPushTokenAsync();
-  //     console.log(token);
-  //   }
-  
   render() {
     return (
       <View style ={styles.container}>
@@ -47,12 +22,11 @@ export default class App extends React.Component {
        
        
        {/* <StatusBar backgroundColor="blue" barStyle="light-content" hidden={true} />
-       <AppContainer /> 
+       
        <DrawerNavigator />
         
           */}
-           <AppContainer />
-            
+          <AppContainer />             
       
       </View>
     );
