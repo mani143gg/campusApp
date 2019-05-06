@@ -17,7 +17,7 @@ const App = createSwitchNavigator(
     DrawerNavigator : {screen: DrawerNavigator}
   },
   {
-    initialRouteName: 'SignUp'
+    initialRouteName: 'DrawerNavigator'
   }
 );
 const AppContainer = createAppContainer(App);   

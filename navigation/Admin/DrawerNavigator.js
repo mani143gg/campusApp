@@ -10,7 +10,6 @@ import Assignment from '../../screens/Admin/Assignment';
 import Profile from '../../screens/Admin/Profile';
 import ProfileNavigator from '../../navigation/Admin/ProfileNavigator'
 
-
 const WIDTH = Dimensions.get('window').width;
 
 const DrawerConfig = {

@@ -1,2 +1,9 @@
 create an android OAuth client id
 openssl rand -base64 32 | openssl sha1 -c
+
+
+
+npm install react-native-datepicker --save
+npm install react-native-ui-xg --save
+
+npm i react-native-easy-toast --save

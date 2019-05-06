@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
-import {
-  Text,
-  Item,
-  Label,
-  Input,
-  Button,
-} from 'native-base';
-import firebase from '../../config'
-import Form from 'react-native-form'
+import React ,{ Component} from 'react';
+import {View,Text,StyleSheet} from 'react-native';
+import {createAppContainer,createBottomTabNavigator} from 'react-navigation';
+import MenuButton from '../../../../components/MenuButton';
+import firebase from '../../../../config';
+import Form from 'react-native-form';
+import { Item,Label,Input,Button,} from 'native-base';
 
-export default class firebase extends Component{
+
+export default class S1mca extends Component{
   constructor(props) {
     super(props);
     this.state = {
