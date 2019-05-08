@@ -20,7 +20,7 @@ export default class Mca extends React.Component {
       () =>
         this.setState({
           refreshing: false,
-          items: ["S1mca", "S2","S3","S4","S5","S6"],
+          items: ["S1mca", "S2mca","S3","S4","S5","S6"],
         }),
       1500,
     );

@@ -13,7 +13,7 @@ import Form from './screens/Flatlist/FlatlistHome';   //flathome
 import Todofirebase from './screens/Admin/Todo';
 import BranchNavigation from './screens/Branch/BranchNavigation';
 import CategoryNavigation from './screens/Branch/CategoryNavigation';
-
+import Homepage from './screens/Home/Homepage';
 
 export default class App extends React.Component {
 
@@ -25,7 +25,7 @@ export default class App extends React.Component {
              {/* <StatusBar backgroundColor="blue" barStyle="light-content" hidden={true} />     
        <DrawerNavigator />       
           */}
-          <CategoryNavigation />       
+          <AppContainer />       
       </View>
     );
   }

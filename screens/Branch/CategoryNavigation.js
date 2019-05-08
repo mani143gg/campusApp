@@ -12,6 +12,7 @@ import ComputerScience from './Btech/ComputerScience';
 import EEE from './Btech/EEE';
 import Mechanical from './Btech/Mechanical';
 import S1mca from './Semester/Mca/S1mca';
+import S2mca from './Semester/Mca/S2mca';
 
 const App = createSwitchNavigator(
   {
@@ -26,6 +27,8 @@ const App = createSwitchNavigator(
     EEE : {screen : EEE},
     Mechanical : {screen : Mechanical},
     S1mca : {screen : S1mca},
+    S2mca : {screen : S2mca},
+
     
   },
   {

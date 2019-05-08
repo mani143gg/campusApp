@@ -38,7 +38,7 @@ export default class SignUp extends React.Component {
           firebase
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => this.props.navigation.navigate('CategoryNavigation'))
+            .then(() => this.props.navigation.navigate('Main'))
             .catch(error => this.setState({ errorMessage: error.message }))
         }
   
@@ -48,7 +48,6 @@ export default class SignUp extends React.Component {
         <View style={styles.inputContainer}>
           <Image style={styles.inputIcon} source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}/>
           <TextInput style={styles.inputs}
-          autoCapitalize="none"
               placeholder="Email"
               keyboardType="email-address"
               underlineColorAndroid='transparent'

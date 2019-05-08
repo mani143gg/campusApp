@@ -6,6 +6,8 @@ import Loading from './Loading';
 import SignUp from './signUp'
 import login from './login'
 import Main from './main'
+import CategoryNavigation from '../Branch/CategoryNavigation';
+
 import DrawerNavigator from '../../navigation/Admin/DrawerNavigator'
 
 const App = createSwitchNavigator(
@@ -14,10 +16,11 @@ const App = createSwitchNavigator(
     SignUp: {screen: SignUp},
     login: {screen: login},
     Main: {screen : Main},
-    DrawerNavigator : {screen: DrawerNavigator}
+    DrawerNavigator : {screen: DrawerNavigator},
+    CategoryNavigation : { screen : CategoryNavigation }
   },
   {
-    initialRouteName: 'DrawerNavigator'
+    initialRouteName: 'login'
   }
 );
 const AppContainer = createAppContainer(App);   

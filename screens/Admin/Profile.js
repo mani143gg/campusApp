@@ -4,23 +4,33 @@ import {
   Text,
   View,
   Image,
+  Button,
 } from 'react-native';
 import MenuButton from '../../components/MenuButton';
 import {Ionicons } from '@expo/vector-icons';
 import editProfile from './editProfile';
-import firebase from '../../config';
+import config from '../../config';
+import firebase from 'firebase';
 
 
 
 
 
 export default class Profile extends Component {
-
+ state = { currentUser: null }
+    componentDidMount() {
+      const { currentUser } = firebase.auth()
+      this.setState({ currentUser })
+  }
   static navigationOptions = {
-    title:'welcome'
+    title:''
+  };
+  signout(){
+    firebase.auth().signOut()
   };
 
   render() {
+    const { currentUser } = this.state
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
@@ -42,13 +52,17 @@ export default class Profile extends Component {
                           style={styles.menuIcon}
                           onPress= {()=> navigate('editProfile')}
                   />
+                  <Button
+        title="Sign out"
+        onPress={() => signout} 
+        />
             </View>
           </View>
 
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               <Text style={styles.textInfo}>
-                johndoe@gmail.com
+                {currentUser && currentUser.email}
               </Text>
           
               <Text style={styles.textInfo}>

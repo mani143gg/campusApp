@@ -55,6 +55,7 @@ export default class MenuDrawer extends React.Component {
                     {this.navLink('Add ', 'Add')} 
                     {this.navLink('Profile','Profile')} 
                 </View>
+                
                 <View style={styles.footer}>
                     <Text style={styles.description}>Project</Text>
                     <Text style={styles.version}>v1.0</Text>
