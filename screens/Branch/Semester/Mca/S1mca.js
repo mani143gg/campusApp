@@ -7,18 +7,26 @@ import Form from 'react-native-form';
 import { Item,Label,Input,Button,} from 'native-base';
 
 
+
 export default class S1mca extends Component{
+  state = {text: ""  };
   constructor(props) {
     super(props);
     this.state = {
      };
+            
+
      this.itemsRef = firebase.database().ref('/Student/Branch/Mca').child(`S1mca`)
+     
+  }
+  async componentDidMount() {
+    this.currentUser = await firebase.auth().currentUser
   }
 
   pushToFirebase() {
     let formValues = this.refs.soulForm.getValues()
     this.itemsRef.push(formValues)
-    this.props.navigation.navigate('DrawerNavigator')
+    this.props.navigation.navigate('Tab' , { text: this.state.text})
    
   }
 
@@ -52,13 +60,13 @@ export default class S1mca extends Component{
           </Item>
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Mobile</Label>
-            <Input style={{marginLeft: 25}} name="Mobile" keyboardType="numeric" type="TextInput"/>
+            <Input style={{marginLeft: 25}} name="Mobile" keyboardType="numeric" type="TextInput" />
           </Item>
            <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Reg No.</Label>
-            <Input style={{marginLeft: 25}} name="RegNo" type="TextInput" />
+            <Input style={{marginLeft: 25}} name="RegNo" type="TextInput" onChangeText={text => this.setState({text})} />
           </Item>
-            <Button block danger onPress={() => this.pushToFirebase()} style={styles.button}><Text>Save </Text></Button>
+            <Button block danger onPress={() => this.pushToFirebase() } style={styles.button}><Text>Save </Text></Button>
         </Form>
         
       </View>

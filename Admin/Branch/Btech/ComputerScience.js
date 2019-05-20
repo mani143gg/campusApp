@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, FlatList, TouchableOpacity, RefreshControl,ScrollView,Image} from "react-native";
-export default class Mca extends React.Component {
+export default class ComputerScience extends React.Component {
   constructor() {
     super();
     this.state = {refreshing: true, items: []};
@@ -20,7 +20,7 @@ export default class Mca extends React.Component {
       () =>
         this.setState({
           refreshing: false,
-          items: ["S1mca", "S2mca","S3mca","S4mca","Smca","S6mca"],
+          items: ["S1", "S2","S3","S4","S5","S6","S7","S8"],
         }),
       1500,
     );
@@ -68,7 +68,7 @@ export default class Mca extends React.Component {
         </ScrollView>
         <TouchableOpacity onPress= { () => this.props.navigation.navigate('Btech')} >
         <Image
-        source={require('./Btech/back.png')}
+        source={require('./back.png')}
        style={{width: 50, height: 50}}
         />
         </TouchableOpacity>

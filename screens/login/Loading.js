@@ -5,7 +5,7 @@ export default class Loading extends React.Component {
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user =>{
             if (user){
-                this.props.navigation.navigate('DrawerNavigator');
+                this.props.navigation.navigate('TabNav');
             }else{
                 this.props.navigation.navigate('login')
             }

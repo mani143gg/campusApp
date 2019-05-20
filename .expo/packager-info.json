@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 6140,
-  "expoServerNgrokUrl": "https://g8-bnv.anonymous.campusapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.g8-bnv.anonymous.campusapp.exp.direct",
-  "ngrokPid": 4928,
+  "packagerPid": 9424,
+  "expoServerNgrokUrl": "https://9b-4nj.anonymous.campusapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.9b-4nj.anonymous.campusapp.exp.direct",
+  "ngrokPid": 12524,
   "devToolsPort": 19002
 }

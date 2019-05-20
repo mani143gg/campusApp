@@ -13,6 +13,7 @@ import firebase from 'firebase';
 import { Google } from 'expo';
 
 export default class SignUp extends React.Component {
+  
 
  signInWithGoogleAsync = async () => {
             try {

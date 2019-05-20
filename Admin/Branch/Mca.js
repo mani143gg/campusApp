@@ -20,7 +20,7 @@ export default class Mca extends React.Component {
       () =>
         this.setState({
           refreshing: false,
-          items: ["S1mca", "S2mca","S3mca","S4mca","Smca","S6mca"],
+          items: ["S1mca", "S2mca","S3","S4","S5","S6"],
         }),
       1500,
     );
@@ -43,6 +43,7 @@ export default class Mca extends React.Component {
       </Text>
       <View style={{width: '100%', height: 1, backgroundColor: 'gray'}} />
       </TouchableOpacity>
+    
 
     );
   };
@@ -66,7 +67,7 @@ export default class Mca extends React.Component {
           }>
           {this.state.items.map(item => this.renderItem({item}))}
         </ScrollView>
-        <TouchableOpacity onPress= { () => this.props.navigation.navigate('Btech')} >
+         <TouchableOpacity onPress= { () => this.props.navigation.navigate('Category')} >
         <Image
         source={require('./Btech/back.png')}
        style={{width: 50, height: 50}}

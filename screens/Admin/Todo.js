@@ -1,7 +1,10 @@
+/**
+ * React Native todo list with Firebase
+ */
 
-import React from 'react';
-import config from '../../config';
+import React, { Component } from 'react';
 import firebase from 'firebase';
+import config from '../../config';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import DatePicker from 'react-native-datepicker';
 import {
@@ -16,13 +19,13 @@ import {
 } from 'react-native';
 
 
-export default class Todofirebase extends React.Component {
+export default class Todofirebase extends Component {
   
   constructor(props) {
     super(props);
     //realtime listener for firebase db
-    this.itemsRef = firebase.database().ref('todos').child();
-    this.state = { description: '', todos: [], date: '', modalVisible: false,};
+    this.itemsRef = firebase.database().ref('todo');
+    this.state = { description: '', todo: [], date: '', modalVisible: false,};
   }
 
   keyExtractor = (item) => item.id;
@@ -50,7 +53,7 @@ export default class Todofirebase extends React.Component {
       snap.forEach((child) => {
         items.push({
           id: child.key,
-          description: child.val('/description'),
+          description: child.val().description,
           date: child.val().date,
         });
       });
@@ -103,7 +106,6 @@ export default class Todofirebase extends React.Component {
             keyExtractor = {this.keyExtractor}
             renderItem = {this.renderItem}
             style={{marginTop: 20}}
-            
             />
         </View>
         <Toast ref="toast" position="top"/>        

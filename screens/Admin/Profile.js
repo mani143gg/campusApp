@@ -28,6 +28,9 @@ export default class Profile extends Component {
   signout(){
     firebase.auth().signOut()
   };
+   viewData(){
+     firebase.database("Student"  )
+   }
 
   render() {
     const { currentUser } = this.state

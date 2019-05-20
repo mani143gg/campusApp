@@ -18,7 +18,7 @@ export default class login extends React.Component {
   handleLogin = () => {
     const { email,password} = this.state
     firebase.auth().signInWithEmailAndPassword(email,password)
-    .then( () => this.props.navigation.navigate('DrawerNavigator'))
+    .then( () => this.props.navigation.navigate('Tab'))
     .catch(error => this.setState({errorMessage: error.message}))
   }
   
@@ -51,9 +51,9 @@ export default class login extends React.Component {
           <Text style={styles.loginText}>Login</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onClickListener('restore_password')}>
+        {/* <TouchableHighlight style={styles.buttonContainer} onPress={() => this.onClickListener('restore_password')}>
             <Text>Forgot your password?</Text>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this.props.navigation.navigate('SignUp')}>
             <Text>Register</Text>

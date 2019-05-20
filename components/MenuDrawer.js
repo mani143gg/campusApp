@@ -43,7 +43,9 @@ export default class MenuDrawer extends React.Component {
                             <Image style={styles.img} source={require('../assets/icon.png')} />
                         </View>
                         <View style={styles.profileText}>
-                            <Text style={styles.name}>{currentUser && currentUser.email}</Text>
+                     <Text style={styles.name}>{currentUser && currentUser.email}
+                     
+                      </Text>
                         </View>
                     </View>
                 </View>

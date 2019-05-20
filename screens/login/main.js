@@ -1,47 +1,45 @@
-import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, Alert,ScrollView} from 'react-native';
+import React ,{ Component} from 'react';
+import {View,Text,StyleSheet,KeyboardAvoidingView,Image,TouchableOpacity} from 'react-native';
+import {createAppContainer,createBottomTabNavigator} from 'react-navigation';
+import config from '../../config';
 import firebase from 'firebase';
-
-import { Item,Label,Input,Button} from 'native-base';
 import Form from 'react-native-form';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import DrawerNavigator from '../../navigation/Admin/DrawerNavigator';
-export default class Main extends React.Component {
-  
-     state = { currentUser: null }
-    componentDidMount() {
-      const { currentUser } = firebase.auth()
-      this.setState({ currentUser })
+import { Item,Label,Input,Button,} from 'native-base';
+
+
+
+export default class Main extends Component{
+  state = {text: ""  };
+  constructor(props) {
+    super(props);
+    this.state = {
+     };
+            
+
+     this.itemsRef = firebase.database().ref('/Student')
+     
+  }
+
+  pushToFirebase() {
+    let formValues = this.refs.soulForm.getValues()
+    this.itemsRef.push(formValues)
+    this.props.navigation.navigate('Tab' , { text: this.state.text})
    
   }
-        constructor(props) {
-        super(props);
-        this.state = {
-         };
-        this.itemsRef = firebase.database().ref().child(`Student`)
-        
-         }
-     
-      
-      pushToFirebase() {
-        let formValues = this.refs.soulForm.getValues()
-        this.itemsRef.push(formValues)
-        this.props.navigation.navigate('DrawerNavigator')
-           }
 
   render() {
-    const {currentUser}= this.state
     return (
-       <View style={styles.container}>
-      <ScrollView >
+      <KeyboardAvoidingView
+      style={{flex:1}}
+      behavior="padding"
+    >
+      <View style={styles.container}>
         <Text style={styles.title}>
-         Edit Profile
+          Add Students Detail
         </Text>
-        <Text></Text><Text></Text>
+        
         <Form ref="soulForm" style={styles.form} >
-         <Text> Hi {currentUser && currentUser.email} Please fill your details
-          </Text>
-          <Item floatingLabel style={{marginTop:10}}>
+           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Confirm Email</Label>
             <Input style={{marginLeft: 25}} name="Email" autoCapitalize="none" type="TextInput" />
           </Item>
@@ -52,30 +50,36 @@ export default class Main extends React.Component {
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Last name</Label>
             <Input style={{marginLeft: 25}} name="LastName" type="TextInput" />
-          </Item>
+          </Item> 
           <Item floatingLabel style={{marginTop:10}}>
-            <Label style={{marginLeft: 15}}>Branch</Label>
-            <Input style={{marginLeft: 25}} name="Branch" type="TextInput" />
-          </Item>
+            <Label style={{marginLeft: 15}}>Semester  eg.S1CSE</Label>
+            <Input style={{marginLeft: 25}} name="Semester " type="TextInput"  />
+          </Item>       
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Admission Number</Label>
             <Input style={{marginLeft: 25}} name="AdmissionNumber" keyboardType="numeric" type="TextInput" />
           </Item>
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Mobile</Label>
-            <Input style={{marginLeft: 25}} name="Mobile" keyboardType="numeric" type="TextInput"/>
+            <Input style={{marginLeft: 25}} name="Mobile" keyboardType="numeric" type="TextInput" />
           </Item>
            <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Reg No.</Label>
-            <Input style={{marginLeft: 25}} name="RegNo" type="TextInput" />
+            <Input style={{marginLeft: 25}} name="RegNo" type="TextInput" onChangeText={text => this.setState({text})} />
           </Item>
-         
-          
-          
-            <Button Block primary onPress={() => this.pushToFirebase()} style={styles.button}><Text>Save</Text></Button>
+            <Button block danger onPress={() => this.pushToFirebase() } style={styles.button}><Text>Save </Text></Button>
         </Form>
-        </ScrollView>
+        
       </View>
+      {/* <TouchableOpacity onPress= { () => this.props.navigation.navigate('Mca')} >
+        <Image
+        source={require('./Btech/back.png')}
+       style={{width: 50, height: 50}}
+        />
+        </TouchableOpacity> */}
+          </KeyboardAvoidingView>
+           
+
     );
   }
 }
@@ -83,9 +87,12 @@ export default class Main extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',  
-  },title: {
-    fontSize: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  title: {
+    fontSize: 30,
     textAlign: 'center',
     margin: 10,
   },
@@ -95,13 +102,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   form: {
-    width:'89%'
+    width: '80%'
   },
   button: {
-    
-    justifyContent: 'center',
-    borderRadius:15,
-   backgroundColor:'orange',
-   alignItems:'center',
+    margin: 10
   }
 });
