@@ -12,13 +12,12 @@ import {
   FlatList,
   Modal,
   TextInput,
-  Button,
 } from 'react-native';
 import { Constants, ImagePicker, Permissions } from 'expo';
 import uuid from 'uuid';
 import firebase from 'firebase';
 import config from '../../../../config';
-// import {Button} from 'native-base';
+import {Button} from 'native-base';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import DatePicker from 'react-native-datepicker';
 import { createAppContainer, createBottomTabNavigator } from "react-navigation";
@@ -151,7 +150,7 @@ class ImageUpload extends React.Component {
   _copyToClipboard = () => {
     Clipboard.setString(this.state.image);
     alert('file saved sucessfully');
-    firebase.database().ref('link/S1mca').push({link : this.state.image})
+    firebase.database().ref('link/S6mca').set({link : this.state.image})
   };
 
   _takePhoto = async () => {
@@ -207,7 +206,7 @@ async function uploadImageAsync(uri) {
 
   const ref = firebase
     .storage()
-    .ref("Student/Branch/Mca/S1mca")
+    .ref("Student/Branch/Mca/S6mca")
     .child(uuid.v4());
   const snapshot = await ref.put(blob);
 
@@ -319,7 +318,7 @@ class Todopush extends React.Component{
 
 
 
-const S1mca = createBottomTabNavigator({
+const S6mca = createBottomTabNavigator({
   ImageUpload : {screen : ImageUpload},
   Todopush : {screen : Todopush}
 });
@@ -338,7 +337,6 @@ const styles = StyleSheet.create({
   },
   headercontainer: {
     flex: 1,
-    top: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -359,4 +357,4 @@ const styles = StyleSheet.create({
   
 })
 
-export default createAppContainer(S1mca);
+export default createAppContainer(S6mca);

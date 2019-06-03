@@ -30,12 +30,7 @@ export default class Mca extends React.Component {
 
   renderItem = ({item}) => {
     return (
-      // <TouchableOpacity onPress={() => alert(item)} key={`${item}`}>
-      //   <Text style={{width: '100%', height: 48, backgroundColor: 'white'}}>
-      //     {item}
-      //   </Text>
-      //   <View style={{width: '100%', height: 1, backgroundColor: 'gray'}} />
-      // </TouchableOpacity>
+     
 
       <TouchableOpacity onPress={ () => this.props.navigation.navigate(item)} key={`${item}`}>
       <Text style={{width: '100%', height: 48, backgroundColor: 'white'}}>

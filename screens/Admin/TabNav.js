@@ -1,5 +1,5 @@
 import React from "react";
-import { View,  StyleSheet,StatusBar,Image,FlatList,Modal,TextInput } from "react-native";
+import { View,  StyleSheet,StatusBar,Image,FlatList,Modal,TextInput ,ListView} from "react-native";
 import { createAppContainer, createBottomTabNavigator } from "react-navigation";
 import config from "../../config";
 import firebase from "firebase";
@@ -35,7 +35,7 @@ class Home extends React.Component {
             </CardItem>
             <CardItem>
               <Body>
-                <Image source={{uri: 'https://t1.rbxcdn.com/37e065fad8c490f831718bb03ac8f9b7'}} style={{height: 100, width: 100, flex: 1}}/>
+                <Image source={{uri: 'https://freepngimg.com/thumb/quotes/35395-9-quotes.png'}} style={{height: 100, width: 100, flex: 1}}/>
                 <Text>
                   Motivate yourself
                 </Text>
@@ -58,17 +58,102 @@ class Home extends React.Component {
 
 
 
+
+
+
+
+
+
+
+
+
+
 class Notices extends React.Component {
- render() {
+  constructor(props) {
+    super(props);
+    //realtime listener for firebase dbs
+    this.itemsRef = firebase.database().ref('link/S1mca');
+    this.state = { link: '',todos [] , modalVisible: false,};
+  }
+
+  keyExtractor = (item) => item.id;
+
+  renderItem = ({item}) =>
+  <View >
+    <Image style={{width: 500, height: 500}} 
+    source={{uri: item.link }}
+    />  
+  </View>;
+
+
+
+  // List todos
+  listenForItems(itemsRef) {
+    itemsRef.on('value', (snap) => {
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          id: child.key,
+          link: child.val().link  
+        });
+      });
+
+      this.setState({todos: items});
+    });
+  }
+
+  componentDidMount() {
+    this.listenForItems(this.itemsRef);
+  }
+
+  render() {
     return (
-      <Image source={{uri: 'https://firebasestorage.googleapis.com/v0/b/campusapp-c2b92.appspot.com/o/Student%2FBranch%2FMca%2FS1mca%2F56535407-5964-4c64-bf63-af68012c7d98?alt=media&token=a2e2e5b4-bbc1-49ac-8f0f-d8329f1097a0'}} style={{height: 50, width: 400 , flex: 1}}/>
+      <View >
+
+        <View >
+          <FlatList
+            data = {this.state.todos}
+            keyExtractor = {this.keyExtractor}
+            renderItem = {this.renderItem}
+            style={{marginTop: 20}}
+            />
+        </View>
+        <Toast ref="toast" position="top"/>        
+      </View>
     );
   }
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Notification extends React.Component {
+
+    constructor(props) {
+    super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        {description: "Sample Notification"}, 
+        
+      ]),
+    };
+  }
 
     componentDidMount() {
       this.currentUser= firebase.auth().currentUser
@@ -94,30 +179,105 @@ firebase.database().ref("Student/Branch/Mca/S1mca" + this.currentUser.uid + '/pu
 
   render() {
         return (
-      <View style={styles.container}>
-        <Text>Notifications here</Text>
+      <View style={styles.container1}>
+      <Text> Notifications Here </Text>
+        <ListView style={styles.notificationList1} enableEmptySections={true}
+          dataSource={this.state.dataSource}
+          renderRow={(notification) => {
+            return (
+              <View style={styles.notificationBox1}>
+                <Image style={styles.icon}
+                  source={{uri: 'https://png.icons8.com/notification/ultraviolet/50/3498db'}}/>
+                
+                <Text style={styles.description1}>{notification.description}</Text>
+              </View>
+            )}}/>
       </View>
     );
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 class Profile extends React.Component {
+
+   constructor(props) {
+    super(props);
+    //realtime listener for firebase db
+    this.itemsRef = firebase.database().ref('/Student/Branch/Mca/S1mca'+userId);
+    this.state = { FirstName: '', todos: [], RegNo: '', modalVisible: false,};
+  }
+
   state = { currentUser: null }
     componentDidMount() {
+      let userId = firebase.auth().currentUser.uid;
       const { currentUser } = firebase.auth()
       this.setState({ currentUser })
+      this.listenForItems(this.itemsRef);
   }
+   keyExtractor = (item) => item.id;
+
+  renderItem = ({item}) =>
+  <View >
+    <Text style={{fontSize: 20}}> {item.FirstName} </Text>  
+    <Text style={{fontSize: 20}}>  {item.RegNo} </Text> 
+  </View>;
+  //VIew
+  listenForItems(itemsRef) {
+    itemsRef.on('value', (snap) => {
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          id: child.key,
+          RegNo: child.val().RegNo,
+          FirstName: child.val().FirstName,
+        });
+      });
+
+      this.setState({todos: items});
+    });
+  }
+  
  render() {
         const {currentUser}= this.state
 
     return (
       <View style={styles.container}>
       <Text> Welcome {currentUser && currentUser.email} </Text>
-      <Text> Name : </Text>
+      <Text> {this.state.FirstName}</Text>
+      <Text> {this.state.RegNo} </Text>
       </View>
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Todo extends React.Component {
   constructor(props) {
@@ -224,7 +384,8 @@ const Tab = createBottomTabNavigator({
   Notices : { screen: Notices },
   Notification : { screen: Notification},
   Profile : {screen : Profile },
-  Todo : {screen : Todo}
+  Todo : {screen : Todo},
+  
 });
 
 const styles = StyleSheet.create({
@@ -232,7 +393,8 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: 'center',
     justifyContent: 'center',
-  },maincontainer: {
+  },
+  maincontainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -256,6 +418,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  container1:{
+    backgroundColor:'#DCDCDC'
+  },
+  notificationList1:{
+    marginTop:20,
+    padding:10,
+  },
+  notificationBox1: {
+    padding:20,
+    marginTop:5,
+    marginBottom:5,
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    borderRadius:10,
+  },
+  icon:{
+    width:45,
+    height:45,
+  },
+  description1:{
+    fontSize:18,
+    color: "#3498db",
+    marginLeft:10,
   },
   
 })

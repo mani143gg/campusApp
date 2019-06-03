@@ -1,5 +1,5 @@
 import React ,{ Component} from 'react';
-import {View,Text,StyleSheet,KeyboardAvoidingView,Image,TouchableOpacity} from 'react-native';
+import {View,Text,StyleSheet,KeyboardAvoidingView} from 'react-native';
 import {createAppContainer,createBottomTabNavigator} from 'react-navigation';
 import MenuButton from '../../../../components/MenuButton';
 import firebase from '../../../../config';
@@ -7,26 +7,17 @@ import Form from 'react-native-form';
 import { Item,Label,Input,Button,} from 'native-base';
 
 
-
-export default class S1mca extends Component{
-  state = {text: ""  };
+export default class S2mca extends Component{
   constructor(props) {
     super(props);
     this.state = {
      };
-            
-
-     this.itemsRef = firebase.database().ref('/Student/Branch/Mca').child(`S2mca`)
-     
-  }
-  async componentDidMount() {
-    this.currentUser = await firebase.auth().currentUser
+     this.itemsRef = firebase.database().ref('/Student/Branch/Mca').child(`S5mca`)
   }
 
   pushToFirebase() {
     let formValues = this.refs.soulForm.getValues()
     this.itemsRef.push(formValues)
-    this.props.navigation.navigate('Tab' , { text: this.state.text})
    
   }
 
@@ -53,31 +44,27 @@ export default class S1mca extends Component{
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Last name</Label>
             <Input style={{marginLeft: 25}} name="LastName" type="TextInput" />
-          </Item>        
+          </Item>
+          <Item floatingLabel style={{marginTop:10}}>
+            <Label style={{marginLeft: 15}}>Branch</Label>
+            <Input style={{marginLeft: 25}} name="Branch" type="TextInput" />
+          </Item>
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Admission Number</Label>
             <Input style={{marginLeft: 25}} name="AdmissionNumber" keyboardType="numeric" type="TextInput" />
           </Item>
           <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Mobile</Label>
-            <Input style={{marginLeft: 25}} name="Mobile" keyboardType="numeric" type="TextInput" />
+            <Input style={{marginLeft: 25}} name="Mobile" keyboardType="numeric" type="TextInput"/>
           </Item>
            <Item floatingLabel style={{marginTop:10}}>
             <Label style={{marginLeft: 15}}>Reg No.</Label>
-            <Input style={{marginLeft: 25}} name="RegNo" type="TextInput" onChangeText={text => this.setState({text})} />
+            <Input style={{marginLeft: 25}} name="RegNo" type="TextInput" />
           </Item>
-            <Button block danger onPress={() => this.pushToFirebase() } style={styles.button}><Text>Save </Text></Button>
+            <Button block danger onPress={() => this.pushToFirebase()} style={styles.button}><Text>Save </Text></Button>
         </Form>
-        
       </View>
-      <TouchableOpacity onPress= { () => this.props.navigation.navigate('Mca')} >
-        <Image
-        source={require('../../Btech/back.png')}
-       style={{width: 50, height: 50}}
-        />
-        </TouchableOpacity>
           </KeyboardAvoidingView>
-           
 
     );
   }

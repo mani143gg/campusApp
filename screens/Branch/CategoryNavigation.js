@@ -11,9 +11,14 @@ import Biotechnology from './Btech/Biotechnology';
 import ComputerScience from './Btech/ComputerScience';
 import EEE from './Btech/EEE';
 import Mechanical from './Btech/Mechanical';
-import S1mca from './Semester/Mca/S1mca';
 import Tab from '../Admin/TabNav';
+import S1mca from './Semester/Mca/S1mca';
 import S2mca from './Semester/Mca/S2mca';
+import S3mca from './Semester/Mca/S3mca';
+import S4mca from './Semester/Mca/S4mca';
+import S5mca from './Semester/Mca/S5mca';
+import S6mca from './Semester/Mca/S6mca';
+
 
 const App = createSwitchNavigator(
   {
@@ -29,6 +34,10 @@ const App = createSwitchNavigator(
     Mechanical : {screen : Mechanical},
     S1mca : { screen : S1mca},
     S2mca : { screen : S2mca},
+    S3mca : { screen : S3mca},
+    S4mca : { screen : S4mca},
+    S5mca : { screen : S5mca},
+    S6mca : { screen : S6mca},
     Tab : {screen : Tab},
 
     
